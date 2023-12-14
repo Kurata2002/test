@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chart.js Sample</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.27.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@2.0.0"></script>
+    <script src="./heatmap.js"></script>
+
+    <style>
+        .tab {
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
+        .tab button {
+            background-color: #ddd;
+            float: left;
+            border: 1px solid #ccc;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .tab button:hover {
+            background-color: #bbb;
+        }
+
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .chart-container {
+            height: 500px;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')">Heatmap</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">Graph</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">Tab 3</button>
+    </div>
+
+    <div id="Tab1" class="tabcontent">
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+
+            body * {
+                font-weight: 200;
+            }
+
+            #heatmapContainerWrapper {
+                width: 80%;
+                height: 80%;
+                position: absolute;
+                background: rgba(207, 203, 203, 0);
+            }
+
+            #heatmapContainer {
+                width: 85%;
+                height: 79%;
+            }
+
+            #heatmapLegend {
+                position: absolute;
+                bottom: 30;
+                right: 1;
+                padding: 10px;
+            }
+
+            #min {
+                float: left;
+            }
+
+            #max {
+                float: right;
+            }
+
+            #all-examples-info {
+                position: absolute;
+                background: white;
+                font-size: 16px;
+                padding: 20px;
+                top: 100px;
+                width: 350px;
+                line-height: 150%;
+                border: 1px solid rgba(0, 0, 0, .2);
+            }
+        </style>
+        <div class="chart-container">
+            <div id="heatmapContainerWrapper">
+                <div id="heatmapContainer">
+                    <div
+                        style="background-image: url('research_layout.png'); width: 100%; height: 100%; background-size: contain;">
+                    </div>
+                </div>
+                <div id="heatmapLegend">
+                    <h2>Descriptive Legend Title</h2>
+                    <span id="min"></span>
+                    <span id="max"></span>
+                    <img id="gradient" src="" style="width:100%" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Tab2" class="tabcontent">
+        <style>
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 24px;
+            }
+
+            h4 {
+                font-size: 24px;
+            }
+        </style>
+        <h1>空気質グラフ</h1>
+        <h2>CO2グラフ</h2>
+        <div class="chart-container">
+            <canvas id="CO2Chart"></canvas>
+        </div>
+        <h3>AQIグラフ</h3>
+        <div class="chart-container">
+            <canvas id="AQIChart"></canvas>
+        </div>
+        <h4>TVOCグラフ</h4>
+        <div class="chart-container">
+            <canvas id="TVOCChart"></canvas>
+        </div>
+    </div>
+
+    <div id="Tab3" class="tabcontent">
+        <!-- Content for Tab 3 goes here -->
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
